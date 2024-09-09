@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Questions</title>
+    <link rel="stylesheet" href="exerciseQuestion.css">
+</head>
+<body>
+
+    <h2>Practice Questions</h2>
+
+    <!-- Question 1 -->
+    <p>1. Find the largest element in an array of integers.</p>
+    <button onclick="toggleAnswer('answer1_cpp', ['answer1_java', 'answer1_python'])">C++</button>
+    <button onclick="toggleAnswer('answer1_java', ['answer1_cpp', 'answer1_python'])">Java</button>
+    <button onclick="toggleAnswer('answer1_python', ['answer1_cpp', 'answer1_java'])">Python</button>
+    <div id="answer1_cpp" class="answer">
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[] = {12, 35, 7, 42, 19};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int max = arr[0];
+
+    for (int i = 1; i &lt; n; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+
+    cout << "Largest element is: " << max << endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+    <div id="answer1_java" class="answer">
+        <pre><code>
+class Test 
+{ 
+    static int arr[] = {12, 35, 7, 42, 19}; 
+    static int largest() 
+    { 
+        int i; 
+        int max = arr[0]; 
+        for (i = 1; i < arr.length; i++) 
+            if (arr[i] > max) 
+                max = arr[i]; 
+        
+        return max; 
+    } 
+    public static void main(String[] args) 
+    { 
+        System.out.println("Largest in given array is " + largest()); 
+    } 
+}             
+        </code></pre>
+    </div>
+    <div id="answer1_python" class="answer">
+        <pre><code>
+arr = [12, 35, 7, 42, 19]
+max_value = max(arr)
+print("Largest element is:", max_value)
+        </code></pre>
+    </div>
+
+    <!-- Question 2 -->
+    <p>2. Find the minimum element in an array of integers.</p>
+    <button onclick="toggleAnswer('answer2_cpp', ['answer2_java', 'answer2_python'])">C++</button>
+    <button onclick="toggleAnswer('answer2_java', ['answer2_cpp', 'answer2_python'])">Java</button>
+    <button onclick="toggleAnswer('answer2_python', ['answer2_cpp', 'answer2_java'])">Python</button>
+    <div id="answer2_cpp" class="answer">
+        <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[] = {12, 35, 7, 42, 19};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int min = arr[0];
+
+    for (int i = 1; i &lt; n; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+
+    cout << "Smallest element is: " << min << endl;
+    return 0;
+}
+        </code></pre>
+    </div>
+    <div id="answer2_java" class="answer">
+        <pre><code>
+class Test 
+{ 
+    static int arr[] = {12, 35, 7, 42, 19}; 
+    static int smallest() 
+    { 
+        int i; 
+        int min = arr[0]; 
+        for (i = 1; i < arr.length; i++) 
+            if (arr[i] < min) 
+                min = arr[i]; 
+        
+        return min; 
+    } 
+    public static void main(String[] args) 
+    { 
+        System.out.println("Smallest in given array is " + smallest()); 
+    } 
+}             
+        </code></pre>
+    </div>
+    <div id="answer2_python" class="answer">
+        <pre><code>
+arr = [12, 35, 7, 42, 19]
+min_value = min(arr)
+print("Smallest element is:", min_value)
+        </code></pre>
+    </div>
+
+    <script>
+        function toggleAnswer(showId, hideIds) {
+            var showElement = document.getElementById(showId);
+            if (showElement.style.display === "block") {
+                showElement.style.display = "none";
+            } else {
+                showElement.style.display = "block";
+                hideIds.forEach(function(hideId) {
+                    document.getElementById(hideId).style.display = "none";
+                });
+            }
+        }
+    </script>
+    
+</body>
+</html>
