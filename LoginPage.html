@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmY3ZzNsYm05Ynh0NTUxb2w5czRxcTh1ZWplNzV1bzl5NnlqMHJvbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pWhWtKdqwOAco/giphy.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .usernameNpass1 {
+            border: 3px solid white;
+            border-radius: 8px;
+            width: 350px;
+            height: 350px;
+            color: white;
+        }
+
+        .usernameNpass2 {
+            margin: 50px;
+            font-family: "Pixelify Sans", system-ui;
+            font-size: 30px;
+            text-align: center;
+        }
+        .usernameNpass2 form{
+            margin:15px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 7px;
+            margin: 10px 0;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: white;
+        }
+        input[type="submit"] {
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            font-weight: bold;
+            padding: 7px;
+            margin: 10px 0;
+            border: 2px solid white;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .usernameNpass1 .signup{
+            text-align: center;
+            margin: 20px;
+        }
+        .usernameNpass1 .signup a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login">
+        <div class="usernameNpass1">
+            <div class="usernameNpass2">
+                LOGIN
+                <div class="form">
+                    <form action="" method="post">
+                        <input type="text" placeholder="Username" name="Username" id="Username">
+                        <input type="password" placeholder="Password" name="Password" id="Password">
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+            <div class="signup">
+                Don't have an account? <a href="signupPage.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
