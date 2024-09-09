@@ -8,12 +8,12 @@
         function validate(){
             var pass = document.getElementById("Password").value;
             var cpass = document.getElementById("ConfirmPassword").value;
-            if(pass.length<6){
+            if(pass.length < 6){
                 alert("Password is too short!");
                 document.getElementById("Password").focus();
                 return false;
             }
-            if(pass!=cpass){
+            if(pass != cpass){
                 alert("Passwords do not match!");
                 document.getElementById("ConfirmPassword").focus();
                 return false;
