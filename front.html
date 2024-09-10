@@ -1,109 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Editor</title>
-    <style >
-        *{
+    <style>
+        * {
             background-color: black;
             color: white;
         }
-        #exercise a{
-            float:right;
-            margin:20px;
-            font-size:20px;
-            text-decoration:none;
+
+        .topics {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
         }
-        #learnProgramming a{
+
+        .topics a {
             text-decoration: none;
-            font-size:20px;
+            font-size: 20px;
         }
-        #Cplusplus a{
+
+        #learnProgramming h1 {
+            text-align: center;
+            font-size: 35px;
+        }
+
+        #Cplusplus a {
             text-decoration: none;
-            font-size:20px;
-        } 
-        #Python a{
+            font-size: 20px;
+        }
+
+        #Python a {
             text-decoration: none;
-            font-size:20px;
-        } 
-        #Java a{
+            font-size: 20px;
+        }
+
+        #Java a {
             text-decoration: none;
-            font-size:20px;
+            font-size: 20px;
         }
-        #Cplusplus a:hover{
-            text-decoration:underline;
-        }
-        #Python a:hover{
-            text-decoration:underline;
-        }
-        #Java a:hover{
-            text-decoration:underline;
+
+        .clist,
+        .plist,
+        .jlist {
+            list-style: none;
+
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <div id="exercise">
-            <a href="exercise.html">Exercise</a>
-        </div>
-    </header>
-    <section id="learnProgramming">
+    <div id="learnProgramming">
         <h1>Tutorials</h1>
-        <a href="#C++">C++</a><br>
-        <a href="#Python">Python</a><br>
-        <a href="#Java">Java</a><br>
+        <div class="topics">
+            <a href="#C++">C++</a><br>
+            <a href="#Python">Python</a><br>
+            <a href="#Java">Java</a><br>
+        </div>
+    </div>
+    <section id="Cplusplus">
+        <h2>C++ Tutorial</h2>
+        <ul class="clist">
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_intro.asp">Introduction to C++</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_arrays.asp">C++ Arrays</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_structs.asp">C++ Structures</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_pointers.asp">C++ Pointers</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_functions_recursion.asp">C++ Recursion</a>
+            </li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_functions.asp">C++ Functions</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_classes.asp">C++ Classes and Objects</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_encapsulation.asp">C++ Encapsulation</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_inheritance.asp">C++ Inheritance</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_polymorphism.asp">C++ Polymorphism</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_encapsulation.asp">C++ Encapsulation</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_vectors.asp">C++ STL</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_examples.asp">C++ Example</a></li>
+        </ul>
     </section>
-        <section id="Cplusplus">
-            <h2>C++ Tutorial</h2>
-            <ul class="clist">
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_intro.asp">Introduction to C++</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_arrays.asp">C++ Arrays</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_structs.asp">C++ Structures</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_pointers.asp">C++ Pointers</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_functions_recursion.asp">C++ Recursion</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_functions.asp">C++ Functions</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_classes.asp">C++ Classes and Objects</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_encapsulation.asp">C++ Encapsulation</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_inheritance.asp">C++ Inheritance</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_polymorphism.asp">C++ Polymorphism</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_encapsulation.asp">C++ Encapsulation</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_vectors.asp">C++ STL</a></li>
-                <li><a target="_blank" href="https://www.w3schools.com/cpp/cpp_examples.asp">C++ Example</a></li>
-            </ul>
-        </section>
-            <section id="Python">
-                <h2>Python Tutorial</h2>
-                <ul>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_intro.asp">Python</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_arrays.asp">Python Arrays</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_strings.asp">Python Strings</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_tuples.asp">Python Tuples</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_dictionaries.asp">Python Dictionaries</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_classes.asp">Python Classes and Objects</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_inheritance.asp">Python Inheritance</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_polymorphism.asp">Python Polymorphism</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_file_handling.asp">File Handling in Python</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_mysql_getstarted.asp">MySQL in Python</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/python/python_examples.asp">Examples of Python</a></li>
-                </ul>
-            </section>
-            <section id="Java">
-                <h2>Java Tutorial</h2>
-                <ul>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_intro.asp">Java</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_arrays.asp">Java Arrays</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_strings.asp">Java Strings</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_methods.asp">Java Methods</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_classes.asp">Java Classes and Objects</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_encapsulation.asp">Java Encapsulation</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_inheritance.asp">Java Inheritance</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_polymorphism.asp">Java Polymorphism</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_files.asp">File Handling in Java</a></li>
-                    <li><a target="_blank" href="https://www.w3schools.com/java/java_examples.asp">Examples of Java</a></li>
-                </ul>
-            </section>
-        </section>
+    <section id="Python">
+        <h2>Python Tutorial</h2>
+        <ul class="plist">
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_intro.asp">Python</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_arrays.asp">Python Arrays</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_strings.asp">Python Strings</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_tuples.asp">Python Tuples</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_dictionaries.asp">Python
+                    Dictionaries</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_classes.asp">Python Classes and
+                    Objects</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_inheritance.asp">Python Inheritance</a>
+            </li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_polymorphism.asp">Python
+                    Polymorphism</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_file_handling.asp">File Handling in
+                    Python</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_mysql_getstarted.asp">MySQL in
+                    Python</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/python/python_examples.asp">Examples of Python</a>
+            </li>
+        </ul>
+    </section>
+    <section id="Java">
+        <h2>Java Tutorial</h2>
+        <ul class="jlist">
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_intro.asp">Java</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_arrays.asp">Java Arrays</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_strings.asp">Java Strings</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_methods.asp">Java Methods</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_classes.asp">Java Classes and Objects</a>
+            </li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_encapsulation.asp">Java Encapsulation</a>
+            </li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_inheritance.asp">Java Inheritance</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_polymorphism.asp">Java Polymorphism</a>
+            </li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_files.asp">File Handling in Java</a></li>
+            <li><a target="_blank" href="https://www.w3schools.com/java/java_examples.asp">Examples of Java</a></li>
+        </ul>
+    </section>
+    </section>
     <script src="codeEditor.js"></script>
 </body>
+
 </html>
