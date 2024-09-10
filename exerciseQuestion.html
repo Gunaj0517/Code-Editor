@@ -122,6 +122,1248 @@ print("Smallest element is:", min_value)
         </code></pre>
     </div>
 
+<!-- Question 3 -->
+<p>3. Find the subarray that has the maximum sum and return its sum.</p>
+<button onclick="toggleAnswer('answer3_cpp', ['answer3_java', 'answer3_python'])">C++</button>
+<button onclick="toggleAnswer('answer3_java', ['answer3_cpp', 'answer3_python'])">Java</button>
+<button onclick="toggleAnswer('answer3_python', ['answer3_cpp', 'answer3_java'])">Python</button>
+<div id="answer3_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int maxSubarraySum(vector<int> &arr) {
+    int res = arr[0];
+  
+      for(int i = 0; i < arr.size(); i++) {
+        int currSum = 0;
+      
+        for(int j = i; j < arr.size(); j++) {
+            currSum = currSum + arr[j];
+            res = max(res, currSum);
+        }
+    }
+    return res;
+}
+
+int main() {
+    vector<int> arr = {2, 3, -8, 7, -1, 2, 3};
+    cout << maxSubarraySum(arr);
+    return 0;
+}
+    </code></pre>
+</div>
+<div id="answer3_java" class="answer">
+    <pre><code>
+        import java.util.Arrays;
+
+        class GfG {
+        
+            static int maxSubarraySum(int[] arr) {
+                int res = arr[0];
+          
+                for (int i = 0; i < arr.length; i++) {
+                    int currSum = 0;
+              
+                    for (int j = i; j < arr.length; j++) {
+                        currSum = currSum + arr[j];
+                      
+                        res = Math.max(res, currSum);
+                    }
+                }
+                return res;
+            }
+        
+            public static void main(String[] args) {
+                int[] arr = {2, 3, -8, 7, -1, 2, 3};
+                System.out.println(maxSubarraySum(arr));
+            }
+        }           
+    </code></pre>
+</div>
+<div id="answer3_python" class="answer">
+    <pre><code>
+        def maxSubarraySum(arr):
+    res = arr[0]
+  
+    for i in range(len(arr)):
+        currSum = 0
+      
+        for j in range(i, len(arr)):
+            currSum = currSum + arr[j]
+          
+            res = max(res, currSum)
+          
+    return res
+
+if __name__ == "__main__":
+    arr = [2, 3, -8, 7, -1, 2, 3]
+    print(maxSubarraySum(arr))
+    </code></pre>
+</div>
+
+<!-- Question 4 -->
+<p>4.Find the index of given key in the array.</p>
+<button onclick="toggleAnswer('answer4_cpp', ['answer4_java', 'answer4_python'])">C++</button>
+<button onclick="toggleAnswer('answer4_java', ['answer4_cpp', 'answer4_python'])">Java</button>
+<button onclick="toggleAnswer('answer4_python', ['answer4_cpp', 'answer4_java'])">Python</button>
+<div id="answer4_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+int binarySearch(vector<int> &arr, int low, int high, int x) {
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (arr[mid] == x) return mid;
+        if (arr[mid] < x) low = mid + 1;
+        else high = mid - 1;
+    }
+    return -1;
+}
+
+int findPivot(vector<int> &arr, int low, int high) {
+    while (low < high) {
+      
+        if (arr[low] <= arr[high])        
+            return low;
+        
+        int mid = (low + high) / 2;
+
+        if (arr[mid] > arr[high])
+            low = mid + 1;
+
+        else
+            high = mid;
+    }
+
+    return low;
+}
+
+int pivotedBinarySearch(vector<int> &arr, int n, int key) {
+    int pivot = findPivot(arr, 0, n - 1);
+
+    if (pivot == 0)
+        return binarySearch(arr, 0, n - 1, key);
+
+    if (arr[pivot] == key)
+        return pivot;
+
+    if (arr[0] <= key)
+        return binarySearch(arr, 0, pivot - 1, key);
+    return binarySearch(arr, pivot + 1, n - 1, key);
+}
+
+int main() {
+
+    vector<int> arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+    int key = 3;
+    cout << pivotedBinarySearch(arr, arr.size(), key);
+    return 0;
+}
+
+    </code></pre>
+</div>
+<div id="answer4_java" class="answer">
+    <pre><code>
+        import java.util.Arrays;
+
+        public class Main {
+            public static int binarySearch(int[] arr, int low, int high, int x) {
+                while (low <= high) {
+                    int mid = low + (high - low) / 2;
+                    if (arr[mid] == x) return mid;
+                    if (arr[mid] < x) low = mid + 1;
+                    else high = mid - 1;
+                }
+                return -1;
+            }
+            public static int findPivot(int[] arr, int low, int high) {
+                while (low < high) {
+                    if (arr[low] <= arr[high])
+                        return low;
+                    
+                    int mid = (low + high) / 2;
+                    if (arr[mid] > arr[high])
+                        low = mid + 1;
+                    else
+                        high = mid;
+                }
+                return low;
+            }
+
+            public static int pivotedBinarySearch(int[] arr, int n, int key) {
+                int pivot = findPivot(arr, 0, n - 1);
+        
+                if (pivot == 0)
+                    return binarySearch(arr, 0, n - 1, key);
+        
+                if (arr[pivot] == key)
+                    return pivot;
+        
+                if (arr[0] <= key)
+                    return binarySearch(arr, 0, pivot - 1, key);
+                return binarySearch(arr, pivot + 1, n - 1, key);
+            }
+           
+            public static void main(String[] args) {
+                int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+                int key = 3;
+                System.out.println(pivotedBinarySearch(arr, arr.length, key));
+            }
+        }             
+    </code></pre>
+</div>
+<div id="answer4_python" class="answer">
+    <pre><code>
+        def binary_search(arr, low, high, x):
+        while low <= high:
+            mid = low + (high - low) // 2
+            if arr[mid] == x:
+                return mid
+            if arr[mid] < x:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return -1
+    
+    def find_pivot(arr, low, high):
+        while low < high:
+            if arr[low] <= arr[high]:
+                return low
+            
+            mid = (low + high) // 2
+            if arr[mid] > arr[high]:
+                low = mid + 1
+            else:
+                high = mid
+        return low
+    
+    def pivoted_binary_search(arr, n, key):
+        #Searches an element key in a pivoted sorted array arr of size n 
+        pivot = find_pivot(arr, 0, n - 1)
+
+        if pivot == 0:
+            return binary_search(arr, 0, n - 1, key)
+
+        if arr[pivot] == key:
+            return pivot
+    
+        if arr[0] <= key:
+            return binary_search(arr, 0, pivot - 1, key)
+        return binary_search(arr, pivot + 1, n - 1, key)
+    
+    if __name__ == "__main__":
+        # Let us search 3 in below array
+        arr = [5, 6, 7, 8, 9, 10, 1, 2, 3]
+        key = 3
+        print(pivoted_binary_search(arr, len(arr), key))
+    </code></pre>
+</div>
+
+<!-- Question 5 -->
+<p>5. Find transpose of matrix.</p>
+<button onclick="toggleAnswer('answer5_cpp', ['answer5_java', 'answer5_python'])">C++</button>
+<button onclick="toggleAnswer('answer5_java', ['answer5_cpp', 'answer5_python'])">Java</button>
+<button onclick="toggleAnswer('answer5_python', ['answer5_cpp', 'answer5_java'])">Python</button>
+<div id="answer5_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+#define N 4 
+
+void transpose(int A[][N], int B[][N]) 
+{ 
+	int i, j; 
+	for (i = 0; i < N; i++) 
+		for (j = 0; j < N; j++) 
+			B[i][j] = A[j][i]; 
+} 
+
+int main() 
+{ 
+	int A[N][N] = { { 1, 1, 1, 1 }, 
+					{ 2, 2, 2, 2 }, 
+					{ 3, 3, 3, 3 }, 
+					{ 4, 4, 4, 4 } }; 
+
+	int B[N][N], i, j; 
+
+	transpose(A, B); 
+
+	cout << "Result matrix is \n"; 
+	for (i = 0; i < N; i++) { 
+		for (j = 0; j < N; j++) 
+			cout << " " << B[i][j]; 
+
+		cout << "\n"; 
+	} 
+	return 0; 
+} 
+    </code></pre>
+</div>
+<div id="answer5_java" class="answer">
+    <pre><code>
+        class GFG { 
+            static final int N = 4; 
+
+            static void transpose(int A[][], int B[][]) 
+            { 
+                int i, j; 
+                for (i = 0; i < N; i++) 
+                    for (j = 0; j < N; j++) 
+                        B[i][j] = A[j][i]; 
+            } 
+
+            public static void main(String[] args) 
+            { 
+                int A[][] = { { 1, 1, 1, 1 }, 
+                            { 2, 2, 2, 2 }, 
+                            { 3, 3, 3, 3 }, 
+                            { 4, 4, 4, 4 } }; 
+        
+                int B[][] = new int[N][N], i, j; 
+
+                transpose(A, B); 
+        
+                System.out.print("Result matrix is \n"); 
+                for (i = 0; i < N; i++) { 
+                    for (j = 0; j < N; j++) 
+                        System.out.print(B[i][j] + " "); 
+                    System.out.print("\n"); 
+                } 
+            } 
+        }         
+    </code></pre>
+</div>
+<div id="answer5_python" class="answer">
+    <pre><code>
+        N = 4
+
+        def transpose(A, B): 
+        
+            for i in range(N): 
+                for j in range(N): 
+                    B[i][j] = A[j][i] 
+        
+        if __name__ == '__main__': 
+        A = [[1, 1, 1, 1], 
+            [2, 2, 2, 2], 
+            [3, 3, 3, 3], 
+            [4, 4, 4, 4]] 
+
+        B = [[0 for x in range(N)] for y in range(N)] 
+
+        transpose(A, B) 
+        
+        print("Result matrix is") 
+        for i in range(N): 
+            for j in range(N): 
+                print(B[i][j], " ", end='') 
+            print()         
+    </code></pre>
+</div>
+
+<!-- Question 6 -->
+<p>6. Check whether the two given strings are anagrams of each other or not.</p>
+<button onclick="toggleAnswer('answer6_cpp', ['answer6_java', 'answer6_python'])">C++</button>
+<button onclick="toggleAnswer('answer6_java', ['answer6_cpp', 'answer6_python'])">Java</button>
+<button onclick="toggleAnswer('answer6_python', ['answer6_cpp', 'answer6_java'])">Python</button>
+<div id="answer6_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+    
+    bool areAnagrams(string s1, string s2)
+    {
+        sort(s1.begin(), s1.end());
+        sort(s2.begin(), s2.end());
+    
+        return s1 == s2;
+    }
+    
+    int main()
+    {
+        string str1 = "listen";
+        string str2 = "silent";
+    
+        if (areAnagrams(str1, str2)) {
+            cout << "True" << endl;
+        }
+        else {
+            cout << "False" << endl;
+        }
+    
+        str1 = "gram";
+        str2 = "arm";
+    
+        if (areAnagrams(str1, str2)) {
+            cout << "True" << endl;
+        }
+        else {
+            cout << "False" << endl;
+        }
+    
+        return 0;
+    }
+    
+    </code></pre>
+</div>
+<div id="answer6_java" class="answer">
+    <pre><code>
+        import java.util.Arrays;
+
+        public class AnagramChecker {
+            public static boolean areAnagrams(String s1, String s2)
+            {
+
+                char[] charArray1 = s1.toCharArray();
+                char[] charArray2 = s2.toCharArray();
+                Arrays.sort(charArray1);
+                Arrays.sort(charArray2);
+
+                return Arrays.equals(charArray1, charArray2);
+            }
+        
+            public static void main(String[] args)
+            {
+                String str1 = "listen";
+                String str2 = "silent";
+        
+                if (areAnagrams(str1, str2)) {
+                    System.out.println("True");
+                }
+                else {
+                    System.out.println("False");
+                }
+        
+                str1 = "gram";
+                str2 = "arm";
+        
+                if (areAnagrams(str1, str2)) {
+                    System.out.println("True");
+                }
+                else {
+                    System.out.println("False");
+                }
+            }
+        }
+                     
+    </code></pre>
+</div>
+<div id="answer6_python" class="answer">
+    <pre><code>
+        def are_anagrams(s1, s2):
+            # Sort both strings and compare
+            return sorted(s1) == sorted(s2)
+        
+        if __name__ == "__main__":
+            str1 = "listen"
+            str2 = "silent"
+        
+            if are_anagrams(str1, str2):
+                print("True")
+            else:
+                print("False")
+        
+            str1 = "gram"
+            str2 = "arm"
+        
+            if are_anagrams(str1, str2):
+                print("True")
+            else:
+                print("False")
+        
+    </code></pre>
+</div>
+
+<!-- Question 7 -->
+<p>7. Check whether if parenthesis is balanced or not.</p>
+<button onclick="toggleAnswer('answer7_cpp', ['answer7_java', 'answer7_python'])">C++</button>
+<button onclick="toggleAnswer('answer7_java', ['answer7_cpp', 'answer7_python'])">Java</button>
+<button onclick="toggleAnswer('answer7_python', ['answer7_cpp', 'answer7_java'])">Python</button>
+<div id="answer7_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+bool isBalanced(string exp)
+{
+
+	bool flag = true;
+	int count = 0;
+
+	for (int i = 0; i < exp.length(); i++) {
+
+		if (exp[i] == '(') {
+			count++;
+		}
+		else {
+
+			count--;
+		}
+		if (count < 0) {
+
+			flag = false;
+			break;
+		}
+	}
+
+	if (count != 0) {
+		flag = false;
+	}
+
+	return flag;
+}
+
+int main()
+{
+	string exp1 = "((()))()()";
+
+	if (isBalanced(exp1))
+		cout << "Balanced \n";
+	else
+		cout << "Not Balanced \n";
+
+	string exp2 = "())((())";
+
+	if (isBalanced(exp2))
+		cout << "Balanced \n";
+	else
+		cout << "Not Balanced \n";
+
+	return 0;
+}
+
+    </code></pre>
+</div>
+<div id="answer7_java" class="answer">
+    <pre><code>
+        class GFG{
+
+        public static boolean isBalanced(String exp) 
+        { 
+            boolean flag = true; 
+            int count = 0; 
+            
+            for(int i = 0; i < exp.length(); i++)
+            { 
+                if (exp.charAt(i) == '(') 
+                { 
+                    count++; 
+                } 
+                else
+                { 
+                    count--; 
+                } 
+                if (count < 0)
+                { 
+                    flag = false; 
+                    break; 
+                } 
+            } 
+            
+            if (count != 0) 
+            { 
+                flag = false; 
+            }
+            return flag; 
+        }
+
+        public static void main(String[] args)
+        {
+            String exp1 = "((()))()()"; 
+            
+            if (isBalanced(exp1)) 
+                System.out.println("Balanced");
+            else
+                System.out.println("Not Balanced");
+            
+            String exp2 = "())((())"; 
+            
+            if (isBalanced(exp2)) 
+                System.out.println("Balanced");
+            else
+                System.out.println("Not Balanced");
+        }
+        }
+                            
+    </code></pre>
+</div>
+<div id="answer7_python" class="answer">
+    <pre><code>
+        def isBalanced(exp):
+        
+            flag = True
+            count = 0
+        
+            for i in range(len(exp)):
+                if (exp[i] == '('):
+                    count += 1
+                else:
+                    
+                    # It is a closing parenthesis
+                    count -= 1
+        
+                if (count < 0):
+        
+                    # This means there are 
+                    # more closing parenthesis 
+                    # than opening
+                    flag = False
+                    break
+
+            if (count != 0):
+                flag = False
+        
+            return flag
+        
+        if __name__ == '__main__':
+            
+        
+            exp1 = "((()))()()"
+        
+            if (isBalanced(exp1)):
+                print("Balanced")
+            else:
+                print("Not Balanced")
+        
+            exp2 = "())((())"
+        
+            if (isBalanced(exp2)):
+                print("Balanced")
+            else:
+                print("Not Balanced")        
+    </code></pre>
+</div>
+<!-- Question 8 -->
+<p>8.How to merge 2 sorted linked list.</p>
+<button onclick="toggleAnswer('answer8_cpp', ['answer8_java', 'answer8_python'])">C++</button>
+<button onclick="toggleAnswer('answer8_java', ['answer8_cpp', 'answer8_python'])">Java</button>
+<button onclick="toggleAnswer('answer8_python', ['answer8_cpp', 'answer8_java'])">Python</button>
+<div id="answer8_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+
+Node* mergeSortedList(Node* a, Node* b) {
+    vector<int> vec;
+
+    while (a != NULL) {
+        vec.push_back(a->data);
+        a = a->next;
+    }
+
+    while (b != NULL) {
+        vec.push_back(b->data);
+        b = b->next;
+    }
+    sort(vec.begin(), vec.end());
+
+    Node* temp = new Node(-1);
+    Node* head = temp;
+    for (int i = 0; i < vec.size(); i++) {
+        temp->next = new Node(vec[i]);
+        temp = temp->next;
+    }
+    head = head->next;
+    return head;
+}
+
+int main() {
+
+    Node* a = new Node(2);
+    a->next = new Node(4);
+    a->next->next = new Node(8);
+    a->next->next->next = new Node(9);
+
+    Node* b = new Node(1);
+    b->next = new Node(3);
+    b->next->next = new Node(8);
+    b->next->next->next = new Node(10);
+
+    Node* res = mergeSortedList(a, b);
+    Node* temp = res;
+      cout << "Merged Link List is:" << endl;
+    while (temp) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    return 0;
+}
+    </code></pre>
+</div>
+<div id="answer8_java" class="answer">
+    <pre><code>
+        import java.util.ArrayList;
+        import java.util.Collections;
+        
+        class Node {
+            int data;
+            Node next;
+            Node(int x) {
+                this.data = x;
+                this.next = null;
+            }
+        }
+        
+        class GfG {
+
+            static Node mergeSortedList(Node a, Node b) {
+
+                ArrayList<Integer> list = new ArrayList<>();
+
+                while (a != null) {
+                    list.add(a.data);
+                    a = a.next;
+                }
+
+                while (b != null) {
+                    list.add(b.data);
+                    b = b.next;
+                }
+
+                Collections.sort(list);
+
+                Node temp = new Node(-1);
+                Node head = temp;
+                for (int value : list) {
+                    temp.next = new Node(value);
+                    temp = temp.next;
+                }
+                head = head.next;
+        
+                // Returning the resultant linked list
+                return head;
+            }
+
+            public static void main(String[] args) {
+
+                Node a = new Node(2);
+                a.next = new Node(4);
+                a.next.next = new Node(8);
+                a.next.next.next = new Node(9);
+
+                Node b = new Node(1);
+                b.next = new Node(3);
+                b.next.next = new Node(8);
+                b.next.next.next = new Node(10);
+        
+                Node res = mergeSortedList(a, b);
+        
+                Node temp = res;
+                   System.out.print("Merged Link List is:\n");
+                while (temp != null) {
+                    System.out.print(temp.data + " ");
+                    temp = temp.next;
+                }
+            }
+        }
+                    
+    </code></pre>
+</div>
+<div id="answer8_python" class="answer">
+    <pre><code>
+        class Node:
+            def __init__(self, x):
+                self.data = x
+                self.next = None
+        
+        def merge_sorted_list(a, b):
+
+            vec = []
+
+            while a:
+                vec.append(a.data)
+                a = a.next
+
+            while b:
+                vec.append(b.data)
+                b = b.next
+
+            vec.sort()
+
+            temp = Node(-1)
+            head = temp
+            for value in vec:
+                temp.next = Node(value)
+                temp = temp.next
+
+            return head
+
+        a = Node(2)
+        a.next = Node(4)
+        a.next.next = Node(8)
+        a.next.next.next = Node(9)
+        
+        b = Node(1)
+        b.next = Node(3)
+        b.next.next = Node(8)
+        b.next.next.next = Node(10)
+        
+        merged_list = merge_sorted_list(a, b)
+        
+        temp = merged_list
+        print("Merged Link List is:")
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.next
+    </code></pre>
+</div>
+
+<!-- Question 9 -->
+<p>9. How to remove Nth node from end of linked list.</p>
+<button onclick="toggleAnswer('answer9_cpp', ['answer9_java', 'answer9_python'])">C++</button>
+<button onclick="toggleAnswer('answer9_java', ['answer9_cpp', 'answer9_python'])">Java</button>
+<button onclick="toggleAnswer('answer9_python', ['answer9_cpp', 'answer9_java'])">Python</button>
+<div id="answer9_cpp" class="answer">
+    <pre><code>
+        // C++ program to delete nth node from last
+        #include <iostream>
+        using namespace std;
+        
+        class Node {
+        public:
+            int data;
+            Node* next;
+        
+            Node(int new_data) {
+                data = new_data;
+                next = nullptr;
+            }
+        };
+        
+        // Function to remove the Nth node from the end
+        Node* removeNthFromEnd(Node* head, int N) {
+          
+            // Calculate the length of the linked list
+            int length = 0;
+            Node* curr = head;
+            while (curr != nullptr) {
+                length++;
+                curr = curr->next;
+            }
+        
+            // Calculate the position to remove from front
+            int target = length - N + 1;
+        
+            // If target is 1, remove the head node
+            if (target == 1) {
+                Node* newHead = head->next;
+              
+                // Free memory of the removed node
+                delete head; 
+                return newHead;
+            }
+        
+            // Traverse to the node just before the target
+            curr = head;
+            for (int i = 1; i < target - 1; i++) {
+                curr = curr->next;
+            }
+        
+            // Remove the target node
+            Node* nodeToDelete = curr->next;
+            curr->next = curr->next->next;
+            delete nodeToDelete;  
+        
+            return head;
+        }
+        
+        void printList(Node* node) {
+            Node* curr = node;
+            while (curr != nullptr) {
+                cout << " " << curr->data;
+                curr = curr->next;
+            }
+        }
+        
+        int main() {
+          
+            // Create a hard-coded linked list: 
+            // 1 -> 2 -> 3 -> 4 -> 5
+            Node* head = new Node(1);
+            head->next = new Node(2);
+            head->next->next = new Node(3);
+            head->next->next->next = new Node(4);
+            head->next->next->next->next = new Node(5);
+        
+            int N = 2;
+            head = removeNthFromEnd(head, N);
+        
+            printList(head);  
+        
+            return 0;
+        }
+    </code></pre>
+</div>
+<div id="answer9_java" class="answer">
+    <pre><code>
+        // Java program to delete nth node from last
+        class Node {
+            int data;
+            Node next;
+        
+            Node(int new_data) {
+                data = new_data;
+                next = null;
+            }
+        }
+        
+        // Class containing the function to remove Nth node from end
+        public class GfG {
+          
+            // Function to remove the Nth node from the end
+            static Node removeNthFromEnd(Node head, int N) {
+              
+                // Calculate the length of the linked list
+                int length = 0;
+                Node curr = head;
+                while (curr != null) {
+                    length++;
+                    curr = curr.next;
+                }
+        
+                // Calculate the position to remove from front
+                int target = length - N + 1;
+        
+                // If target is 1, remove the head node
+                if (target == 1) {
+                    return head.next;
+                }
+        
+                // Traverse to the node just before the target
+                curr = head;
+                for (int i = 1; i < target - 1; i++) {
+                    curr = curr.next;
+                }
+        
+                // Remove the target node
+                curr.next = curr.next.next;
+        
+                return head;
+            }
+        
+            // This function prints the contents of the linked list
+            static void printList(Node node) {
+                Node curr = node;  
+                while (curr != null) {
+                    System.out.print(" " + curr.data);
+                    curr = curr.next;
+                }
+            }
+        
+            public static void main(String[] args) {
+              
+                // Create a hard-coded linked list:
+                // 1 -> 2 -> 3 -> 4 -> 5
+                Node head = new Node(1);
+                head.next = new Node(2);
+                head.next.next = new Node(3);
+                head.next.next.next = new Node(4);
+                head.next.next.next.next = new Node(5);
+        
+                int N = 2; 
+                head = removeNthFromEnd(head, N);
+        
+                printList(head);  
+            }
+        }        
+    </code></pre>
+</div>
+<div id="answer9_python" class="answer">
+    <pre><code>
+        # Python3 program to delete nth node from last
+        class Node:
+            def __init__(self, new_data):
+                self.data = new_data
+                self.next = None
+        
+        # Given the head of a list, remove the Nth node from the end
+        def remove_nth_from_end(head, N):
+          
+            # Calculate the length of the linked list
+            length = 0
+            curr = head
+            while curr is not None:
+                length += 1
+                curr = curr.next
+        
+            # Calculate the position to remove from the front
+            target = length - N + 1
+        
+            # If target is 1, remove the head node
+            if target == 1:
+                return head.next
+        
+            # Traverse to the node just before the target node
+            curr = head
+            for _ in range(target - 2):
+                curr = curr.next
+        
+            # Remove the target node
+            curr.next = curr.next.next
+        
+            return head
+        
+        def print_list(node):
+            curr = node;
+            while curr is not None:
+                print(f" {curr.data}", end="")
+                curr = curr.next
+            print()
+        
+        if __name__ == "__main__":
+          
+            # Create a hard-coded linked list:
+            # 1 -> 2 -> 3 -> 4 -> 5
+            head = Node(1)
+            head.next = Node(2)
+            head.next.next = Node(3)
+            head.next.next.next = Node(4)
+            head.next.next.next.next = Node(5)
+        
+            N = 2  
+            head = remove_nth_from_end(head, N)
+        
+            print_list(head)        
+    </code></pre>
+</div>
+
+<!-- Question 10 -->
+<p>10.How to convert an Infix expression to Postfix form..</p>
+<button onclick="toggleAnswer('answer10_cpp', ['answer10_java', 'answer10_python'])">C++</button>
+<button onclick="toggleAnswer('answer10_java', ['answer10_cpp', 'answer10_python'])">Java</button>
+<button onclick="toggleAnswer('answer10_python', ['answer10_cpp', 'answer10_java'])">Python</button>
+<div id="answer10_cpp" class="answer">
+    <pre><code>
+#include &lt;iostream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+using namespace std;
+    
+    // Function to return precedence of operators
+    int prec(char c) {
+        if (c == '^')
+            return 3;
+        else if (c == '/' || c == '*')
+            return 2;
+        else if (c == '+' || c == '-')
+            return 1;
+        else
+            return -1;
+    }
+    
+    // Function to return associativity of operators
+    char associativity(char c) {
+        if (c == '^')
+            return 'R';
+        return 'L'; // Default to left-associative
+    }
+    
+    // The main function to convert infix expression to postfix expression
+    void infixToPostfix(char s[]) {
+        char result[1000];
+        int resultIndex = 0;
+        int len = strlen(s);
+        char stack[1000];
+        int stackIndex = -1;
+    
+        for (int i = 0; i < len; i++) {
+            char c = s[i];
+    
+            // If the scanned character is an operand, add it to the output string.
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+                result[resultIndex++] = c;
+            }
+            // If the scanned character is an ‘(‘, push it to the stack.
+            else if (c == '(') {
+                stack[++stackIndex] = c;
+            }
+            // If the scanned character is an ‘)’, pop and add to the output string from the stack
+            // until an ‘(‘ is encountered.
+            else if (c == ')') {
+                while (stackIndex >= 0 && stack[stackIndex] != '(') {
+                    result[resultIndex++] = stack[stackIndex--];
+                }
+                stackIndex--; // Pop '('
+            }
+            // If an operator is scanned
+            else {
+                while (stackIndex >= 0 && (prec(s[i]) < prec(stack[stackIndex]) ||
+                                           prec(s[i]) == prec(stack[stackIndex]) &&
+                                               associativity(s[i]) == 'L')) {
+                    result[resultIndex++] = stack[stackIndex--];
+                }
+                stack[++stackIndex] = c;
+            }
+        }
+    
+        // Pop all the remaining elements from the stack
+        while (stackIndex >= 0) {
+            result[resultIndex++] = stack[stackIndex--];
+        }
+    
+        result[resultIndex] = '\0';
+        printf("%s\n", result);
+    }
+    
+    // Driver code
+    int main() {
+        char exp[] = "a+b*(c^d-e)^(f+g*h)-i";
+    
+        // Function call
+        infixToPostfix(exp);
+    
+        return 0;
+    }
+    
+    </code></pre>
+</div>
+<div id="answer10_java" class="answer">
+    <pre><code>
+        import java.util.Stack;
+
+        public class InfixToPostfix {
+        
+            // Function to return precedence of operators
+            static int prec(char c) {
+                if (c == '^')
+                    return 3;
+                else if (c == '/' || c == '*')
+                    return 2;
+                else if (c == '+' || c == '-')
+                    return 1;
+                else
+                    return -1;
+            }
+        
+            // Function to return associativity of operators
+            static char associativity(char c) {
+                if (c == '^')
+                    return 'R';
+                return 'L'; // Default to left-associative
+            }
+        
+            // The main function to convert infix expression to postfix expression
+            static void infixToPostfix(String s) {
+                StringBuilder result = new StringBuilder();
+                Stack<Character> stack = new Stack<>();
+        
+                for (int i = 0; i < s.length(); i++) {
+                    char c = s.charAt(i);
+        
+                    // If the scanned character is an operand, add it to the output string.
+                    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+                        result.append(c);
+                    }
+                    // If the scanned character is an ‘(‘, push it to the stack.
+                    else if (c == '(') {
+                        stack.push(c);
+                    }
+                    // If the scanned character is an ‘)’, pop and add to the output string from the stack
+                    // until an ‘(‘ is encountered.
+                    else if (c == ')') {
+                        while (!stack.isEmpty() && stack.peek() != '(') {
+                            result.append(stack.pop());
+                        }
+                        stack.pop(); // Pop '('
+                    }
+                    // If an operator is scanned
+                    else {
+                        while (!stack.isEmpty() && (prec(s.charAt(i)) < prec(stack.peek()) ||
+                                                     prec(s.charAt(i)) == prec(stack.peek()) &&
+                                                         associativity(s.charAt(i)) == 'L')) {
+                            result.append(stack.pop());
+                        }
+                        stack.push(c);
+                    }
+                }
+        
+                // Pop all the remaining elements from the stack
+                while (!stack.isEmpty()) {
+                    result.append(stack.pop());
+                }
+        
+                System.out.println(result);
+            }
+        
+            // Driver code
+            public static void main(String[] args) {
+                String exp = "a+b*(c^d-e)^(f+g*h)-i";
+        
+                // Function call
+                infixToPostfix(exp);
+            }
+        }        
+    </code></pre>
+</div>
+<div id="answer10_python" class="answer">
+    <pre><code>
+        def prec(c):
+        if c == '^':
+            return 3
+        elif c == '/' or c == '*':
+            return 2
+        elif c == '+' or c == '-':
+            return 1
+        else:
+            return -1
+    
+    def associativity(c):
+        if c == '^':
+            return 'R'
+        return 'L'  # Default to left-associative
+    
+    def infix_to_postfix(s):
+        result = []
+        stack = []
+    
+        for i in range(len(s)):
+            c = s[i]
+    
+            # If the scanned character is an operand, add it to the output string.
+            if ('a' <= c <= 'z') or ('A' <= c <= 'Z') or ('0' <= c <= '9'):
+                result.append(c)
+            # If the scanned character is an ‘(‘, push it to the stack.
+            elif c == '(':
+                stack.append(c)
+            # If the scanned character is an ‘)’, pop and add to the output string from the stack
+            # until an ‘(‘ is encountered.
+            elif c == ')':
+                while stack and stack[-1] != '(':
+                    result.append(stack.pop())
+                stack.pop()  # Pop '('
+            # If an operator is scanned
+            else:
+                while stack and (prec(s[i]) < prec(stack[-1]) or
+                                 (prec(s[i]) == prec(stack[-1]) and associativity(s[i]) == 'L')):
+                    result.append(stack.pop())
+                stack.append(c)
+    
+        # Pop all the remaining elements from the stack
+        while stack:
+            result.append(stack.pop())
+    
+        print(''.join(result))
+    
+    # Driver code
+    exp = "a+b*(c^d-e)^(f+g*h)-i"
+    
+    # Function call
+    infix_to_postfix(exp)    
+    </code></pre>
+</div>
     <script>
         function toggleAnswer(showId, hideIds) {
             var showElement = document.getElementById(showId);
@@ -134,7 +1376,6 @@ print("Smallest element is:", min_value)
                 });
             }
         }
-    </script>
-    
+    </script>   
 </body>
 </html>
