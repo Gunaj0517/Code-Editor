@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
     <!-- Blackboard theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/blackboard.min.css">
+     <!-- CodeMirror autocomplete CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
     <style>
         .CodeMirror {
             height: auto;
             border: 1px solid #ddd;
+        }
+        .cm-matchhighlight {
+            background-color: yellow;
+            color: black;
         }
     </style>
 </head>
@@ -33,12 +39,71 @@ int main() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
     <!-- CodeMirror addon for auto-closing brackets -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closebrackets.min.js"></script>
+    <!-- CodeMirror addon for search-curso-highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/searchcursor.min.js"></script>
+    <!-- CodeMirror autocomplete addon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/anyword-hint.min.js"></script>
     <script>
         var editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
             lineNumbers: true,
             mode: "text/x-c++src",
             theme: "blackboard",
-            autoCloseBrackets: true
+            autoCloseBrackets: true,
+            extraKeys: { "Ctrl-Space": "autocomplete" }
+        });
+
+        var cppKeywords = ["auto", "break", "case", "catch", "char", "cin", "const", "continue","cout", "default", "do", 
+            "double", "else", "enum", "extern", "float", "for", "goto", "if", "inline", "int", "long", "namespace",
+            "new", "operator", "private", "protected", "public", "return", "short", "signed", "sizeof",
+            "static", "struct", "switch", "template", "this", "throw", "try", "typedef", "union",
+            "unsigned", "virtual", "void", "volatile", "while", "class", "bool", "constexpr", "const_cast",
+            "delete", "dynamic_cast", "explicit", "export", "friend", "mutable", "nullptr", "static_cast",
+            "typeid", "typename", "using"];
+        
+            function cppHint(cm) {
+            var cursor = cm.getCursor();
+            var token = cm.getTokenAt(cursor);
+            var start = token.start;
+            var end = cursor.ch;
+            var currentWord = token.string;
+            var list = cppKeywords.filter(function (keyword) {
+                return keyword.startsWith(currentWord);
+            }).sort();
+
+            return {
+                list: list,
+                from: CodeMirror.Pos(cursor.line, start),
+                to: CodeMirror.Pos(cursor.line, end)
+            };
+        }
+
+        editor.on("inputRead", function (cm, event) {
+            if (!cm.state.completionActive && event.text[0].match(/\w/)) { 
+                CodeMirror.showHint(cm, cppHint, { completeSingle: false });
+            }
+        });
+
+        function clearHighlights() {
+            editor.getAllMarks().forEach(mark => mark.clear());
+        }
+
+        function highlightOccurrences(word) {
+            clearHighlights(); 
+            if (!word) return;
+            var cursor = editor.getSearchCursor(word);
+            while (cursor.findNext()) {
+                editor.markText(cursor.from(), cursor.to(), { className: 'cm-matchhighlight' });
+            }
+        }
+
+        editor.on("cursorActivity", function() {
+            var selection = editor.getSelection().trim();
+            if(selection.length > 0) {
+                highlightOccurrences(selection);
+            } else {
+                clearHighlights();
+            }
         });
     </script>
 </body>

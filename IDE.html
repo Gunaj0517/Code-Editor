@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="IDE.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/blackboard.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/anyword-hint.min.js"></script>
 </head>
 <body>
     <header>
@@ -27,15 +34,16 @@
             <a href="#homePage" id="codingImage"><br><img src="OC.jpeg" alt="Quiz"></a>
         </nav>
         <div id="textBoxes">
-            <textarea id="editor1" placeholder="Enter your Code: "></textarea>
+            <select id="languageSelect">
+                <option value="text/x-c++src">C++</option>
+                <option value="text/x-java">Java</option>
+                <option value="text/x-python">Python</option>
+            </select>
+            <textarea id="editor1" placeholder="Enter your code here"></textarea>
             <button type="submit">Run</button>
-            <textarea id="editor2" placeholder="Terminal: "></textarea>
+            <textarea id="editor2" placeholder="Terminal"></textarea>
         </div>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/edit/closebrackets.min.js"></script>
     
     <script>    
         document.addEventListener("DOMContentLoaded", function() {
@@ -43,7 +51,14 @@
                 lineNumbers: true,
                 mode: "text/x-c++src",
                 theme: "blackboard",
-                autoCloseBrackets: true
+                autoCloseBrackets: true,
+                extraKeys: { "Ctrl-Space": "autocomplete" },
+                hintOptions: { completeSingle: false }
+            });
+
+            document.getElementById("languageSelect").addEventListener("change", function() {
+                var selectedLang = this.value;
+                editor.setOption("mode", selectedLang);
             });
         });
     </script>
