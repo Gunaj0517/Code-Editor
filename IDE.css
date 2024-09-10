@@ -5,7 +5,10 @@
 body {
     background-color: black;
 }
-
+.cm-matchhighlight {
+    background-color: yellow;
+    color: black;
+}
 .titleBar {
     border: 3px solid white;
     display: flex;

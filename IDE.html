@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/anyword-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/searchcursor.min.js"></script>
 </head>
 <body>
     <header>
@@ -60,7 +61,29 @@
                 var selectedLang = this.value;
                 editor.setOption("mode", selectedLang);
             });
+        
+        function clearHighlights() {
+            editor.getAllMarks().forEach(mark => mark.clear());
+        }
+
+        function highlightOccurrences(word) {
+            clearHighlights(); 
+            if (!word) return;
+            var cursor = editor.getSearchCursor(word);
+            while (cursor.findNext()) {
+                editor.markText(cursor.from(), cursor.to(), { className: 'cm-matchhighlight' });
+            }
+        }
+
+        editor.on("cursorActivity", function() {
+            var selection = editor.getSelection().trim();
+            if(selection.length > 0) {
+                highlightOccurrences(selection);
+            } else {
+                clearHighlights();
+            }
         });
+    });
     </script>
 </body>
 </html>
