@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const bodyP = require("body-parser");
 app.use(bodyP.json());
-app.use(express.static("C:/Users/Brinda/Desktop/dsw1/Code-Editor"));
+const pathToStaticFiles = process.env.CODE_EDITOR_PATH
+app.use(express.static(pathToStaticFiles));
 const compiler = require("compilex");
 const options = { stats: true };
 compiler.init(options);
@@ -10,7 +11,7 @@ compiler.init(options);
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-    res.sendFile("C:/Users/Brinda/Desktop/dsw1/Code-Editor/IDE.html");
+    res.sendFile(`${pathToStaticFiles}/IDE.html`);
 });
 
 app.post("/compile", function (req, res) {
