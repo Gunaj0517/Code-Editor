@@ -67,7 +67,7 @@ textarea {
     margin-bottom: 5px;
 }
 
-#editor2 {
+#output, #input {
     display: flex;
     height: 12em;
     width: 75vw;
