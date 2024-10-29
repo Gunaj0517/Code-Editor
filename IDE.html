@@ -36,9 +36,9 @@
         </nav>
         <div id="textBoxes">
             <select id="languageSelect">
-                <option value="text/x-c++src">C++</option>
-                <option value="text/x-java">Java</option>
-                <option value="text/x-python">Python</option>
+                <option value="c++">C++</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
             </select>
             <textarea id="editor1" placeholder="Enter your code here"></textarea>
             <button type="submit">Run</button>
@@ -57,10 +57,22 @@
                 hintOptions: { completeSingle: false }
             });
 
-            document.getElementById("languageSelect").addEventListener("change", function() {
-                var selectedLang = this.value;
-                editor.setOption("mode", selectedLang);
-            });
+            var option=document.getElementById("languageSelect")
+            option.addEventListener("change",function(){
+                if(option.value=="java"){
+                    editor.setOption("mode","text/x-java") 
+                }
+                else if(option.value=="python"){
+                    editor.setOption("mode","text/x-python") 
+                }
+                else{
+                    editor.setOption("mode","text/x-c++src") 
+                }
+            })
+            //document.getElementById("languageSelect").addEventListener("change", function() {
+                //var selectedLang = this.value;
+                //editor.setOption("mode", selectedLang);
+            //});
         
         function clearHighlights() {
             editor.getAllMarks().forEach(mark => mark.clear());
