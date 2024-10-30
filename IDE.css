@@ -69,7 +69,7 @@ textarea {
 
 #output, #input {
     display: flex;
-    height: 12em;
+    height: 8em;
     width: 75vw;
 }
 

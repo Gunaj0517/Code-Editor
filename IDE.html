@@ -48,7 +48,7 @@
         </div>
     </div>
     
-    <script>    
+    <script> 
         document.addEventListener("DOMContentLoaded", function() {
             var editor = CodeMirror.fromTextArea(document.getElementById("editor1"), {
                 lineNumbers: true,
@@ -59,45 +59,59 @@
                 hintOptions: { completeSingle: false }
             });
 
-            var option=document.getElementById("languageSelect")
-            option.addEventListener("change",function(){
-                if(option.value=="java"){
-                    editor.setOption("mode","text/x-java") 
+            document.getElementById("languageSelect").addEventListener("change", function() {
+                const selectedLang = this.value;
+                if (selectedLang === "java") {
+                    editor.setOption("mode", "text/x-java");
+                } else if (selectedLang === "python") {
+                    editor.setOption("mode", "text/x-python");
+                } else {
+                    editor.setOption("mode", "text/x-c++src");
                 }
-                else if(option.value=="python"){
-                    editor.setOption("mode","text/x-python") 
-                }
-                else{
-                    editor.setOption("mode","text/x-c++src") 
-                }
-            })
-            //document.getElementById("languageSelect").addEventListener("change", function() {
-                //var selectedLang = this.value;
-                //editor.setOption("mode", selectedLang);
-            //});
-        
-        function clearHighlights() {
-            editor.getAllMarks().forEach(mark => mark.clear());
-        }
+            });
 
-        function highlightOccurrences(word) {
-            clearHighlights(); 
-            if (!word) return;
-            var cursor = editor.getSearchCursor(word);
-            while (cursor.findNext()) {
-                editor.markText(cursor.from(), cursor.to(), { className: 'cm-matchhighlight' });
+            function clearHighlights() {
+                editor.getAllMarks().forEach(mark => mark.clear());
             }
-        }
 
-        editor.on("cursorActivity", function() {
-            var selection = editor.getSelection().trim();
-            if(selection.length > 0) {
-                highlightOccurrences(selection);
-            } else {
-                clearHighlights();
+            function highlightOccurrences(word) {
+                clearHighlights(); 
+                if (!word) return;
+                var cursor = editor.getSearchCursor(word);
+                while (cursor.findNext()) {
+                    editor.markText(cursor.from(), cursor.to(), { className: 'cm-matchhighlight' });
+                }
             }
+
+            editor.on("cursorActivity", function() {
+                const selection = editor.getSelection().trim();
+                if (selection.length > 0) {
+                    highlightOccurrences(selection);
+                } else {
+                    clearHighlights();
+                }
+            });
+
+            document.getElementById("run").addEventListener("click", async function() {
+                const codeData = {
+                    code: editor.getValue(),
+                    input: document.getElementById("input").value,
+                    lang: document.getElementById("languageSelect").value
+                };
+                try {
+                    const response = await fetch("http://localhost:8000/compile", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(codeData)
+                    });
+                    const data = await response.json();
+                    document.getElementById("output").value = data.output || "An error occurred.";
+                } catch (error) {
+                    console.error("Error in fetch request:", error);
+                    document.getElementById("output").value = "Failed to reach the server.";
+                }
+            });
         });
-    });
     </script>
 </body>
 </html>
