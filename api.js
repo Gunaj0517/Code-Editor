@@ -23,14 +23,73 @@ app.post("/compile", function (req, res) {
             var envData = { OS: "windows", cmd: "g++" }; // uses g++ command to compile
             if (!input) {
                 compiler.compileCPP(envData, code, function (data) {
-                    res.send(data);
+                     if(data.output){
+            res.send(data);
+        }
+        else{
+            res.send({output:"Error"})
+        }
                 });
             } else {
                 compiler.compileCPPWithInput(envData, code, input, function (data) {
-                    res.send(data);
+                     if(data.output){
+            res.send(data);
+        }
+        else{
+            res.send({output:"Error"})
+        }
                 });
             }
-        } else {
+        }
+        else if (lang == "Java") {
+            if (!input) {
+                var envData = { OS: "windows" };
+                compiler.compileJava(envData, code, function (data) {
+                     if(data.output){
+            res.send(data);
+        }
+        else{
+            res.send({output:"Error"})
+        }
+                });
+            }
+            else {
+                var envData = { OS: "windows" };
+                compiler.compileJavaWithInput(envData, code, input, function (data) {
+                     if(data.output){
+            res.send(data);
+        }
+        else{
+            res.send({output:"Error"})
+        }
+                });
+            }
+        }
+        else if (lang == "Python") {
+            if (!input) {
+                var envData = { OS: "windows" };
+                compiler.compilePython(envData, code, function (data) {
+                     if(data.output){
+            res.send(data);
+        }
+        else{
+            res.send({output:"Error"})
+        }
+                });
+            }
+            else {
+                var envData = { OS: "windows" };
+                compiler.compilePythonWithInput(envData, code, input, function (data) {
+                     if(data.output){
+            res.send(data);
+        }
+        else{
+            res.send({output:"Error"})
+        }
+                });
+            }
+        }
+        else {
             res.send({ output: "Language not supported" });
         }
     } catch (e) {
