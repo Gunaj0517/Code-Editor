@@ -8,8 +8,14 @@
         <style>
                 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+                html {
+                        background-image: url('nhan-nguyen-nNm1c2lF1Es-unsplash.jpg');
+                        background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                }
+
                 body {
-                        background-color: black;
                         color: white;
                         margin: 0px;
                         padding: 0px;
@@ -38,14 +44,16 @@
                         font-size: 20px;
                         color: white;
                         padding: 10px 20px;
-                        border: 2px solid rgba(255, 255, 255, 0.3);
+                        background-color: rgba(255, 255, 255, 0.05);
+                        border: 2px solid rgba(255, 255, 255, 0.2);
                         border-radius: 5px;
                         width: 60px;
+                        transition: transform 0.2s ease, box-shadow 0.2s ease;
                 }
 
                 .topics a:hover {
+                        transform: translateY(-3px);
                         background-color: rgba(255, 255, 255, 0.1);
-                        color: rgba(255, 255, 255, 0.8);
                 }
 
                 .content {
@@ -83,7 +91,7 @@
                 h2 {
                         text-align: center;
                         margin-bottom: 20px;
-                        color: rgba(255, 255, 255, 0.8);
+                        color: rgb(255, 255, 255);
                         font-family: "Pixelify Sans", system-ui;
                 }
 

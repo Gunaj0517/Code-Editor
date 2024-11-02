@@ -4,18 +4,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: whitesmoke;
+    color: rgb(255, 255, 255);
 }
 
 html {
-    background-image:url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmY3ZzNsYm05Ynh0NTUxb2w5czRxcTh1ZWplNzV1bzl5NnlqMHJvbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pWhWtKdqwOAco/giphy.webp');
+    background-image: url('nhan-nguyen-nNm1c2lF1Es-unsplash.jpg');    
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 body {
-    background-color: black;
     display: flex;
     align-items: center;
     font-family: Arial, sans-serif;
@@ -32,7 +31,7 @@ h2 {
 }
 
 .question-card {
-    background-color: rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     padding: 30px;
@@ -42,7 +41,7 @@ h2 {
 }
 
 .question-card:hover {
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(20, 20, 20,0.8);
     transform: scale(1.02);
 }
 

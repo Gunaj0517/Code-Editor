@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +17,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/anyword-hint.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/searchcursor.min.js"></script>
 </head>
+
 <body>
     <header>
         <div class="titleBar">
-            <a href="front.html">Learn Programming</a>
-            <a href="#exercise">Exercise</a>
-            <a href="#collaboration">Collaborative Coding</a>
-            <a href="#myProject">My Projects</a>
+            <a href="#collaboration">COLLABORATIVE CODING</a>
+            <a href="#myProject">MY PROJECTS</a>
         </div>
     </header>
     <div id="divisions">
         <nav class="navBar">
-            <a href="#homePage" id="codingImage"><img src="coding.jpg" alt="Code Editor"></a>
-            <a href="#ide">IDE</a>
-            <a href="front.html">Learn Programming</a>
-            <a href="#signUpPage">Sign Up</a>
-            <a href="#loginPage">Login</a>
-            <a href="#homePage" id="codingImage"><br><img src="OC.jpeg" alt="Quiz"></a>
+            <a href="Tutorial.html">Learn Programming</a>
+            <a href="exerciseQuestion.html">Exercise</a>
+            <a href="LoginPage.html">Login</a>
+            <a href="SignUpPage.html">Sign Up</a>
         </nav>
         <div id="textBoxes">
             <select id="languageSelect">
@@ -40,16 +38,16 @@
                 <option value="java">Java</option>
                 <option value="python">Python</option>
             </select>
-            <textarea id="editor1" placeholder="Enter your code here"></textarea>
+            <textarea id="editor1"></textarea>
             <button type="submit" id="run">Run</button>
             <textarea id="input" placeholder="Inputs:"></textarea>
             <br>
-            <textarea id="output" placeholder="Output:"></textarea>
+            <textarea id="output" placeholder="Output:" readonly></textarea>
         </div>
     </div>
-    
-    <script> 
-        document.addEventListener("DOMContentLoaded", function() {
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
             var editor = CodeMirror.fromTextArea(document.getElementById("editor1"), {
                 lineNumbers: true,
                 mode: "text/x-c++src",
@@ -59,7 +57,7 @@
                 hintOptions: { completeSingle: false }
             });
 
-            document.getElementById("languageSelect").addEventListener("change", function() {
+            document.getElementById("languageSelect").addEventListener("change", function () {
                 const selectedLang = this.value;
                 if (selectedLang === "java") {
                     editor.setOption("mode", "text/x-java");
@@ -75,7 +73,7 @@
             }
 
             function highlightOccurrences(word) {
-                clearHighlights(); 
+                clearHighlights();
                 if (!word) return;
                 var cursor = editor.getSearchCursor(word);
                 while (cursor.findNext()) {
@@ -83,7 +81,7 @@
                 }
             }
 
-            editor.on("cursorActivity", function() {
+            editor.on("cursorActivity", function () {
                 const selection = editor.getSelection().trim();
                 if (selection.length > 0) {
                     highlightOccurrences(selection);
@@ -92,7 +90,7 @@
                 }
             });
 
-            document.getElementById("run").addEventListener("click", async function() {
+            document.getElementById("run").addEventListener("click", async function () {
                 const codeData = {
                     code: editor.getValue(),
                     input: document.getElementById("input").value,
@@ -114,4 +112,5 @@
         });
     </script>
 </body>
+
 </html>
