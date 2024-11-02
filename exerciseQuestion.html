@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Array Questions</title>
     <link rel="stylesheet" href="exerciseQuestion.css">
 </head>
+
 <body>
-
-    <h2>Practice Questions</h2>
-
-    <!-- Question 1 -->
-    <p>1. Find the largest element in an array of integers.</p>
-    <button onclick="toggleAnswer('answer1_cpp', ['answer1_java', 'answer1_python'])">C++</button>
-    <button onclick="toggleAnswer('answer1_java', ['answer1_cpp', 'answer1_python'])">Java</button>
-    <button onclick="toggleAnswer('answer1_python', ['answer1_cpp', 'answer1_java'])">Python</button>
-    <div id="answer1_cpp" class="answer">
-        <pre><code>
+    <div class="container">
+        <h2>PRACTICE QUESTIONS</h2>
+        <div class="question-card">
+            <!-- Question 1 -->
+            <p>1. Find the largest element in an array of integers.</p>
+            <button onclick="toggleAnswer('answer1_cpp', ['answer1_java', 'answer1_python'])">C++</button>
+            <button onclick="toggleAnswer('answer1_java', ['answer1_cpp', 'answer1_python'])">Java</button>
+            <button onclick="toggleAnswer('answer1_python', ['answer1_cpp', 'answer1_java'])">Python</button>
+            <div id="answer1_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -35,9 +37,9 @@ int main() {
     return 0;
 }
         </code></pre>
-    </div>
-    <div id="answer1_java" class="answer">
-        <pre><code>
+            </div>
+            <div id="answer1_java" class="answer">
+                <pre><code>
 class Test 
 { 
     static int arr[] = {12, 35, 7, 42, 19}; 
@@ -57,22 +59,22 @@ class Test
     } 
 }             
         </code></pre>
-    </div>
-    <div id="answer1_python" class="answer">
-        <pre><code>
+            </div>
+            <div id="answer1_python" class="answer">
+                <pre><code>
 arr = [12, 35, 7, 42, 19]
 max_value = max(arr)
 print("Largest element is:", max_value)
         </code></pre>
-    </div>
+            </div>
 
-    <!-- Question 2 -->
-    <p>2. Find the minimum element in an array of integers.</p>
-    <button onclick="toggleAnswer('answer2_cpp', ['answer2_java', 'answer2_python'])">C++</button>
-    <button onclick="toggleAnswer('answer2_java', ['answer2_cpp', 'answer2_python'])">Java</button>
-    <button onclick="toggleAnswer('answer2_python', ['answer2_cpp', 'answer2_java'])">Python</button>
-    <div id="answer2_cpp" class="answer">
-        <pre><code>
+            <!-- Question 2 -->
+            <p>2. Find the minimum element in an array of integers.</p>
+            <button onclick="toggleAnswer('answer2_cpp', ['answer2_java', 'answer2_python'])">C++</button>
+            <button onclick="toggleAnswer('answer2_java', ['answer2_cpp', 'answer2_python'])">Java</button>
+            <button onclick="toggleAnswer('answer2_python', ['answer2_cpp', 'answer2_java'])">Python</button>
+            <div id="answer2_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -91,9 +93,9 @@ int main() {
     return 0;
 }
         </code></pre>
-    </div>
-    <div id="answer2_java" class="answer">
-        <pre><code>
+            </div>
+            <div id="answer2_java" class="answer">
+                <pre><code>
 class Test 
 { 
     static int arr[] = {12, 35, 7, 42, 19}; 
@@ -113,22 +115,22 @@ class Test
     } 
 }             
         </code></pre>
-    </div>
-    <div id="answer2_python" class="answer">
-        <pre><code>
+            </div>
+            <div id="answer2_python" class="answer">
+                <pre><code>
 arr = [12, 35, 7, 42, 19]
 min_value = min(arr)
 print("Smallest element is:", min_value)
         </code></pre>
-    </div>
+            </div>
 
-<!-- Question 3 -->
-<p>3. Find the subarray that has the maximum sum and return its sum.</p>
-<button onclick="toggleAnswer('answer3_cpp', ['answer3_java', 'answer3_python'])">C++</button>
-<button onclick="toggleAnswer('answer3_java', ['answer3_cpp', 'answer3_python'])">Java</button>
-<button onclick="toggleAnswer('answer3_python', ['answer3_cpp', 'answer3_java'])">Python</button>
-<div id="answer3_cpp" class="answer">
-    <pre><code>
+            <!-- Question 3 -->
+            <p>3. Find the subarray that has the maximum sum and return its sum.</p>
+            <button onclick="toggleAnswer('answer3_cpp', ['answer3_java', 'answer3_python'])">C++</button>
+            <button onclick="toggleAnswer('answer3_java', ['answer3_cpp', 'answer3_python'])">Java</button>
+            <button onclick="toggleAnswer('answer3_python', ['answer3_cpp', 'answer3_java'])">Python</button>
+            <div id="answer3_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -152,9 +154,9 @@ int main() {
     return 0;
 }
     </code></pre>
-</div>
-<div id="answer3_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer3_java" class="answer">
+                <pre><code>
         import java.util.Arrays;
 
         class GfG {
@@ -180,9 +182,9 @@ int main() {
             }
         }           
     </code></pre>
-</div>
-<div id="answer3_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer3_python" class="answer">
+                <pre><code>
         def maxSubarraySum(arr):
     res = arr[0]
   
@@ -200,15 +202,15 @@ if __name__ == "__main__":
     arr = [2, 3, -8, 7, -1, 2, 3]
     print(maxSubarraySum(arr))
     </code></pre>
-</div>
+            </div>
 
-<!-- Question 4 -->
-<p>4.Find the index of given key in the array.</p>
-<button onclick="toggleAnswer('answer4_cpp', ['answer4_java', 'answer4_python'])">C++</button>
-<button onclick="toggleAnswer('answer4_java', ['answer4_cpp', 'answer4_python'])">Java</button>
-<button onclick="toggleAnswer('answer4_python', ['answer4_cpp', 'answer4_java'])">Python</button>
-<div id="answer4_cpp" class="answer">
-    <pre><code>
+            <!-- Question 4 -->
+            <p>4.Find the index of given key in the array.</p>
+            <button onclick="toggleAnswer('answer4_cpp', ['answer4_java', 'answer4_python'])">C++</button>
+            <button onclick="toggleAnswer('answer4_java', ['answer4_cpp', 'answer4_python'])">Java</button>
+            <button onclick="toggleAnswer('answer4_python', ['answer4_cpp', 'answer4_java'])">Python</button>
+            <div id="answer4_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -263,9 +265,9 @@ int main() {
 }
 
     </code></pre>
-</div>
-<div id="answer4_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer4_java" class="answer">
+                <pre><code>
         import java.util.Arrays;
 
         public class Main {
@@ -313,9 +315,9 @@ int main() {
             }
         }             
     </code></pre>
-</div>
-<div id="answer4_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer4_python" class="answer">
+                <pre><code>
         def binary_search(arr, low, high, x):
         while low <= high:
             mid = low + (high - low) // 2
@@ -359,15 +361,15 @@ int main() {
         key = 3
         print(pivoted_binary_search(arr, len(arr), key))
     </code></pre>
-</div>
+            </div>
 
-<!-- Question 5 -->
-<p>5. Find transpose of matrix.</p>
-<button onclick="toggleAnswer('answer5_cpp', ['answer5_java', 'answer5_python'])">C++</button>
-<button onclick="toggleAnswer('answer5_java', ['answer5_cpp', 'answer5_python'])">Java</button>
-<button onclick="toggleAnswer('answer5_python', ['answer5_cpp', 'answer5_java'])">Python</button>
-<div id="answer5_cpp" class="answer">
-    <pre><code>
+            <!-- Question 5 -->
+            <p>5. Find transpose of matrix.</p>
+            <button onclick="toggleAnswer('answer5_cpp', ['answer5_java', 'answer5_python'])">C++</button>
+            <button onclick="toggleAnswer('answer5_java', ['answer5_cpp', 'answer5_python'])">Java</button>
+            <button onclick="toggleAnswer('answer5_python', ['answer5_cpp', 'answer5_java'])">Python</button>
+            <div id="answer5_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 #define N 4 
@@ -401,9 +403,9 @@ int main()
 	return 0; 
 } 
     </code></pre>
-</div>
-<div id="answer5_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer5_java" class="answer">
+                <pre><code>
         class GFG { 
             static final int N = 4; 
 
@@ -435,9 +437,9 @@ int main()
             } 
         }         
     </code></pre>
-</div>
-<div id="answer5_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer5_python" class="answer">
+                <pre><code>
         N = 4
 
         def transpose(A, B): 
@@ -462,15 +464,15 @@ int main()
                 print(B[i][j], " ", end='') 
             print()         
     </code></pre>
-</div>
+            </div>
 
-<!-- Question 6 -->
-<p>6. Check whether the two given strings are anagrams of each other or not.</p>
-<button onclick="toggleAnswer('answer6_cpp', ['answer6_java', 'answer6_python'])">C++</button>
-<button onclick="toggleAnswer('answer6_java', ['answer6_cpp', 'answer6_python'])">Java</button>
-<button onclick="toggleAnswer('answer6_python', ['answer6_cpp', 'answer6_java'])">Python</button>
-<div id="answer6_cpp" class="answer">
-    <pre><code>
+            <!-- Question 6 -->
+            <p>6. Check whether the two given strings are anagrams of each other or not.</p>
+            <button onclick="toggleAnswer('answer6_cpp', ['answer6_java', 'answer6_python'])">C++</button>
+            <button onclick="toggleAnswer('answer6_java', ['answer6_cpp', 'answer6_python'])">Java</button>
+            <button onclick="toggleAnswer('answer6_python', ['answer6_cpp', 'answer6_java'])">Python</button>
+            <div id="answer6_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 using namespace std;
@@ -509,9 +511,9 @@ using namespace std;
     }
     
     </code></pre>
-</div>
-<div id="answer6_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer6_java" class="answer">
+                <pre><code>
         import java.util.Arrays;
 
         public class AnagramChecker {
@@ -551,9 +553,9 @@ using namespace std;
         }
                      
     </code></pre>
-</div>
-<div id="answer6_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer6_python" class="answer">
+                <pre><code>
         def are_anagrams(s1, s2):
             # Sort both strings and compare
             return sorted(s1) == sorted(s2)
@@ -576,15 +578,15 @@ using namespace std;
                 print("False")
         
     </code></pre>
-</div>
+            </div>
 
-<!-- Question 7 -->
-<p>7. Check whether if parenthesis is balanced or not.</p>
-<button onclick="toggleAnswer('answer7_cpp', ['answer7_java', 'answer7_python'])">C++</button>
-<button onclick="toggleAnswer('answer7_java', ['answer7_cpp', 'answer7_python'])">Java</button>
-<button onclick="toggleAnswer('answer7_python', ['answer7_cpp', 'answer7_java'])">Python</button>
-<div id="answer7_cpp" class="answer">
-    <pre><code>
+            <!-- Question 7 -->
+            <p>7. Check whether if parenthesis is balanced or not.</p>
+            <button onclick="toggleAnswer('answer7_cpp', ['answer7_java', 'answer7_python'])">C++</button>
+            <button onclick="toggleAnswer('answer7_java', ['answer7_cpp', 'answer7_python'])">Java</button>
+            <button onclick="toggleAnswer('answer7_python', ['answer7_cpp', 'answer7_java'])">Python</button>
+            <div id="answer7_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -637,9 +639,9 @@ int main()
 }
 
     </code></pre>
-</div>
-<div id="answer7_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer7_java" class="answer">
+                <pre><code>
         class GFG{
 
         public static boolean isBalanced(String exp) 
@@ -690,9 +692,9 @@ int main()
         }
                             
     </code></pre>
-</div>
-<div id="answer7_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer7_python" class="answer">
+                <pre><code>
         def isBalanced(exp):
         
             flag = True
@@ -736,14 +738,14 @@ int main()
             else:
                 print("Not Balanced")        
     </code></pre>
-</div>
-<!-- Question 8 -->
-<p>8.How to merge 2 sorted linked list.</p>
-<button onclick="toggleAnswer('answer8_cpp', ['answer8_java', 'answer8_python'])">C++</button>
-<button onclick="toggleAnswer('answer8_java', ['answer8_cpp', 'answer8_python'])">Java</button>
-<button onclick="toggleAnswer('answer8_python', ['answer8_cpp', 'answer8_java'])">Python</button>
-<div id="answer8_cpp" class="answer">
-    <pre><code>
+            </div>
+            <!-- Question 8 -->
+            <p>8.How to merge 2 sorted linked list.</p>
+            <button onclick="toggleAnswer('answer8_cpp', ['answer8_java', 'answer8_python'])">C++</button>
+            <button onclick="toggleAnswer('answer8_java', ['answer8_cpp', 'answer8_python'])">Java</button>
+            <button onclick="toggleAnswer('answer8_python', ['answer8_cpp', 'answer8_java'])">Python</button>
+            <div id="answer8_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -802,9 +804,9 @@ int main() {
     return 0;
 }
     </code></pre>
-</div>
-<div id="answer8_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer8_java" class="answer">
+                <pre><code>
         import java.util.ArrayList;
         import java.util.Collections;
         
@@ -871,9 +873,9 @@ int main() {
         }
                     
     </code></pre>
-</div>
-<div id="answer8_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer8_python" class="answer">
+                <pre><code>
         class Node:
             def __init__(self, x):
                 self.data = x
@@ -919,17 +921,17 @@ int main() {
             print(temp.data, end=" ")
             temp = temp.next
     </code></pre>
-</div>
+            </div>
 
-<!-- Question 9 -->
-<p>9. How to remove Nth node from end of linked list.</p>
-<button onclick="toggleAnswer('answer9_cpp', ['answer9_java', 'answer9_python'])">C++</button>
-<button onclick="toggleAnswer('answer9_java', ['answer9_cpp', 'answer9_python'])">Java</button>
-<button onclick="toggleAnswer('answer9_python', ['answer9_cpp', 'answer9_java'])">Python</button>
-<div id="answer9_cpp" class="answer">
-    <pre><code>
+            <!-- Question 9 -->
+            <p>9. How to remove Nth node from end of linked list.</p>
+            <button onclick="toggleAnswer('answer9_cpp', ['answer9_java', 'answer9_python'])">C++</button>
+            <button onclick="toggleAnswer('answer9_java', ['answer9_cpp', 'answer9_python'])">Java</button>
+            <button onclick="toggleAnswer('answer9_python', ['answer9_cpp', 'answer9_java'])">Python</button>
+            <div id="answer9_cpp" class="answer">
+                <pre><code>
         // C++ program to delete nth node from last
-        #include <iostream>
+        #include &lt;iostream&gt;
         using namespace std;
         
         class Node {
@@ -1006,9 +1008,9 @@ int main() {
             return 0;
         }
     </code></pre>
-</div>
-<div id="answer9_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer9_java" class="answer">
+                <pre><code>
         // Java program to delete nth node from last
         class Node {
             int data;
@@ -1080,9 +1082,9 @@ int main() {
             }
         }        
     </code></pre>
-</div>
-<div id="answer9_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer9_python" class="answer">
+                <pre><code>
         # Python3 program to delete nth node from last
         class Node:
             def __init__(self, new_data):
@@ -1138,15 +1140,15 @@ int main() {
         
             print_list(head)        
     </code></pre>
-</div>
+            </div>
 
-<!-- Question 10 -->
-<p>10.How to convert an Infix expression to Postfix form..</p>
-<button onclick="toggleAnswer('answer10_cpp', ['answer10_java', 'answer10_python'])">C++</button>
-<button onclick="toggleAnswer('answer10_java', ['answer10_cpp', 'answer10_python'])">Java</button>
-<button onclick="toggleAnswer('answer10_python', ['answer10_cpp', 'answer10_java'])">Python</button>
-<div id="answer10_cpp" class="answer">
-    <pre><code>
+            <!-- Question 10 -->
+            <p>10.How to convert an Infix expression to Postfix form.</p>
+            <button onclick="toggleAnswer('answer10_cpp', ['answer10_java', 'answer10_python'])">C++</button>
+            <button onclick="toggleAnswer('answer10_java', ['answer10_cpp', 'answer10_python'])">Java</button>
+            <button onclick="toggleAnswer('answer10_python', ['answer10_cpp', 'answer10_java'])">Python</button>
+            <div id="answer10_cpp" class="answer">
+                <pre><code>
 #include &lt;iostream&gt;
 #include &lt;cstdlib&gt;
 #include &lt;cstring&gt;
@@ -1186,12 +1188,12 @@ using namespace std;
             if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
                 result[resultIndex++] = c;
             }
-            // If the scanned character is an ‘(‘, push it to the stack.
+            // If the scanned character is an '(', push it to the stack.
             else if (c == '(') {
                 stack[++stackIndex] = c;
             }
-            // If the scanned character is an ‘)’, pop and add to the output string from the stack
-            // until an ‘(‘ is encountered.
+            // If the scanned character is an ')', pop and add to the output string from the stack
+            // until an '(' is encountered.
             else if (c == ')') {
                 while (stackIndex >= 0 && stack[stackIndex] != '(') {
                     result[resultIndex++] = stack[stackIndex--];
@@ -1229,9 +1231,9 @@ using namespace std;
     }
     
     </code></pre>
-</div>
-<div id="answer10_java" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer10_java" class="answer">
+                <pre><code>
         import java.util.Stack;
 
         public class InfixToPostfix {
@@ -1258,7 +1260,7 @@ using namespace std;
             // The main function to convert infix expression to postfix expression
             static void infixToPostfix(String s) {
                 StringBuilder result = new StringBuilder();
-                Stack<Character> stack = new Stack<>();
+                Stack &lt;Character&gt; stack = new Stack<>();
         
                 for (int i = 0; i < s.length(); i++) {
                     char c = s.charAt(i);
@@ -1267,12 +1269,12 @@ using namespace std;
                     if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
                         result.append(c);
                     }
-                    // If the scanned character is an ‘(‘, push it to the stack.
+                    // If the scanned character is an '(', push it to the stack.
                     else if (c == '(') {
                         stack.push(c);
                     }
-                    // If the scanned character is an ‘)’, pop and add to the output string from the stack
-                    // until an ‘(‘ is encountered.
+                    // If the scanned character is an ')', pop and add to the output string from the stack
+                    // until an '(' is encountered.
                     else if (c == ')') {
                         while (!stack.isEmpty() && stack.peek() != '(') {
                             result.append(stack.pop());
@@ -1307,9 +1309,9 @@ using namespace std;
             }
         }        
     </code></pre>
-</div>
-<div id="answer10_python" class="answer">
-    <pre><code>
+            </div>
+            <div id="answer10_python" class="answer">
+                <pre><code>
         def prec(c):
         if c == '^':
             return 3
@@ -1335,11 +1337,11 @@ using namespace std;
             # If the scanned character is an operand, add it to the output string.
             if ('a' <= c <= 'z') or ('A' <= c <= 'Z') or ('0' <= c <= '9'):
                 result.append(c)
-            # If the scanned character is an ‘(‘, push it to the stack.
+            # If the scanned character is an '(', push it to the stack.
             elif c == '(':
                 stack.append(c)
-            # If the scanned character is an ‘)’, pop and add to the output string from the stack
-            # until an ‘(‘ is encountered.
+            # If the scanned character is an ')', pop and add to the output string from the stack
+            # until an '(' is encountered.
             elif c == ')':
                 while stack and stack[-1] != '(':
                     result.append(stack.pop())
@@ -1363,19 +1365,26 @@ using namespace std;
     # Function call
     infix_to_postfix(exp)    
     </code></pre>
-</div>
+            </div>
+        </div>
+    </div>
     <script>
-        function toggleAnswer(showId, hideIds) {
-            var showElement = document.getElementById(showId);
-            if (showElement.style.display === "block") {
-                showElement.style.display = "none";
+        function toggleAnswer(selectedId, otherIds) {
+            const selectedAnswer = document.getElementById(selectedId);
+            if (selectedAnswer.classList.contains("show")) {
+                selectedAnswer.classList.remove("show");
             } else {
-                showElement.style.display = "block";
-                hideIds.forEach(function(hideId) {
-                    document.getElementById(hideId).style.display = "none";
-                });
+                selectedAnswer.classList.add("show");
             }
+
+            otherIds.forEach(id => {
+                const otherAnswer = document.getElementById(id);
+                if (otherAnswer && otherAnswer.classList.contains("show")) {
+                    otherAnswer.classList.remove("show");
+                }
+            });
         }
-    </script>   
+    </script>
 </body>
+
 </html>

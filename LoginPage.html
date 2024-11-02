@@ -29,12 +29,19 @@
         }
 
         .usernameNpass1 {
-            border: 3px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 8px;
             width: 350px;
             height: 350px;
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+
+        }
+
+        .usernameNpass1:hover{
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.02);
         }
 
         .usernameNpass2 {
@@ -83,7 +90,10 @@
         }
         .usernameNpass1 .signup a{
             text-decoration: none;
-            color:lightseagreen;
+            color:rgb(32, 107, 178);
+        }
+        .usernameNpass1 .signup a:active{
+            color:rgb(0, 24, 178);
         }
     </style>
 </head>
