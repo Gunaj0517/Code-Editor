@@ -10,6 +10,9 @@ app.use(bodyP.json());
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
+    compiler.flush(function(){
+        console.log("deleted")
+    })
     res.sendFile(`${pathToStaticFiles}/IDE.html`);
 });
 
