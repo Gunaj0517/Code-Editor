@@ -18,20 +18,26 @@ app.use(express.static("public"));
 const fs = require('fs');
 const path = require('path');
 
-function clearJavaTemp() {
-    const javaTempPath = path.join(__dirname, 'temp');
-    console.log("Clearing Java temp folder at:", javaTempPath);
-
-    fs.rm(javaTempPath, { recursive: true, force: true }, (err) => {
-        if (err) console.error("Failed to delete Java temp folder:", err);
-        else console.log("Java temp folder cleared.");
+// Custom cleanup function for temp folder to avoid EISDIR error
+function customClearTemp() {
+    const tempPath = path.join(__dirname, 'temp');
+    fs.readdir(tempPath, (err, files) => {
+        if (err) {
+            console.error("Failed to read temp folder:", err);
+            return;
+        }
+        
+        files.forEach(file => {
+            const filePath = path.join(tempPath, file);
+            fs.rm(filePath, { recursive: true, force: true }, (err) => {
+                if (err) console.error("Failed to delete:", filePath, err);
+                else console.log("Deleted:", filePath);
+            });
+        });
     });
 }
 
 app.get("/", function (req, res) {
-    compiler.flush(() => {
-        console.log("Temporary files deleted.");
-    });
     res.sendFile(`${pathToStaticFiles}/IDE.html`);
 });
 
@@ -42,17 +48,27 @@ app.post("/compile", function (req, res) {
     console.log("Received language:", lang);
     
     try {
+        const cleanupTemp = () => {
+            if (lang === "java") {
+                customClearTemp(); // Use custom clear function for Java code
+            } else {
+                compiler.flush(() => {
+                    console.log("Temporary files deleted using flush.");
+                });
+            }
+        };
+
         if (lang === "c++") {
             const envData = { OS: "windows", cmd: "g++", options: { timeout: 10000 } };
             if (!input) {
                 compiler.compileCPP(envData, code, function (data) {
                     res.send(data.output ? data : { output: "Error" });
-                    compiler.flush(() => console.log("Temporary files deleted."));
+                    cleanupTemp();
                 });
             } else {
                 compiler.compileCPPWithInput(envData, code, input, function (data) {
                     res.send(data.output ? data : { output: "Error" });
-                    compiler.flush(() => console.log("Temporary files deleted."));
+                    cleanupTemp();
                 });
             }
         } else if (lang === "java") {
@@ -60,18 +76,12 @@ app.post("/compile", function (req, res) {
             if (!input) {
                 compiler.compileJava(envData, code, function (data) {
                     res.send(data.output ? data : { output: "Error" });
-                    compiler.flush(() => {
-                        console.log("Temporary files deleted.");
-                        clearJavaTemp();  // Clear temp after flushing
-                    });
+                    cleanupTemp();
                 });
             } else {
                 compiler.compileJavaWithInput(envData, code, input, function (data) {
                     res.send(data.output ? data : { output: "Error" });
-                    compiler.flush(() => {
-                        console.log("Temporary files deleted.");
-                        clearJavaTemp();  // Clear temp after flushing
-                    });
+                    cleanupTemp();
                 });
             }
         } else if (lang === "python") {
@@ -79,12 +89,12 @@ app.post("/compile", function (req, res) {
             if (!input) {
                 compiler.compilePython(envData, code, function (data) {
                     res.send(data.output ? data : { output: "Error" });
-                    compiler.flush(() => console.log("Temporary files deleted."));
+                    cleanupTemp();
                 });
             } else {
                 compiler.compilePythonWithInput(envData, code, input, function (data) {
                     res.send(data.output ? data : { output: "Error" });
-                    compiler.flush(() => console.log("Temporary files deleted."));
+                    cleanupTemp();
                 });
             }
         } else {
