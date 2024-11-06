@@ -31,7 +31,7 @@ function customClearTemp() {
             const filePath = path.join(tempPath, file);
             fs.rm(filePath, { recursive: true, force: true }, (err) => {
                 if (err) console.error("Failed to delete:", filePath, err);
-                else console.log("Deleted:", filePath);
+                else console.log("Deleted Temporary file.");
             });
         });
     });
