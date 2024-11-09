@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/anyword-hint.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/search/searchcursor.min.js"></script>
 </head>
+
 <body>
     <header>
         <div class="titleBar">
@@ -31,11 +33,14 @@
             <a href="http://localhost/project/SignUpPage.html">Sign Up</a>
         </nav>
         <div id="textBoxes">
-            <select id="languageSelect">
-                <option value="c++">C++</option>
-                <option value="java">Java</option>
-                <option value="python">Python</option>
-            </select>
+            <div class="firstTb">
+                <select id="languageSelect">
+                    <option value="c++">C++</option>
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                </select>
+                <div class="userBox">USER</div>
+            </div>
             <textarea id="editor1"></textarea>
             <button type="submit" id="run">Run</button>
             <textarea id="input" placeholder="Inputs:"></textarea>
@@ -108,6 +113,13 @@
                 }
             });
         });
+        fetch('http://localhost/project/user.php')
+          .then(response => response.text())  // Use .text() for plain text response
+          .then(data => {
+              const username = data;  // Get the username from the response
+              document.querySelector('.userBox').textContent = username;  // Set the username in the userBox
+          })
+          .catch(error => console.error('Error fetching user data:', error));
     </script>
 </body>
 

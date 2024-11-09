@@ -1,25 +1,32 @@
 <?php
-include 'db.php';
+session_start();
+include('db_connect.php'); // Ensure this file contains the database connection
 
-session_start(); // Start session to store user data after login
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['Username'];
-    $password = $_POST['Password'];
-
-    // Fetch user data from database
-    $sql = "SELECT * FROM users WHERE username = :username";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([':username' => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        // Store user info in session and redirect to compiler
-        $_SESSION['username'] = $user['username'];
-        header("Location: compiler.php"); // Redirect to the main compiler page
-        exit();
+    // Check if the user exists in the database
+    $query = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows == 1) {
+        $user = $result->fetch_assoc();
+        // Verify the password
+        if (password_verify($password, $user['password'])) {
+            // Password matches, create session variables
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['name'] = $user['name'];
+            echo 'Login successful';
+        } else {
+            echo 'Incorrect username or password';
+        }
     } else {
-        echo "Invalid username or password!";
+        echo 'Incorrect username or password';
     }
 }
 ?>

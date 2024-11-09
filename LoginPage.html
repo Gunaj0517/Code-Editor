@@ -39,7 +39,7 @@
 
         }
 
-        .usernameNpass1:hover{
+        .usernameNpass1:hover {
             background-color: rgba(0, 0, 0, 0.7);
             transform: scale(1.02);
         }
@@ -50,10 +50,13 @@
             font-size: 30px;
             text-align: center;
         }
-        .usernameNpass2 form{
-            margin:15px;
+
+        .usernameNpass2 form {
+            margin: 15px;
         }
-        input[type="text"], input[type="password"] {
+
+        input[type="text"],
+        input[type="password"] {
             width: 90%;
             padding: 7px;
             margin: 10px 0;
@@ -68,6 +71,7 @@
         input[type="password"]::placeholder {
             color: white;
         }
+
         input[type="submit"] {
             background-color: rgba(255, 255, 255, 0.3);
             cursor: pointer;
@@ -83,17 +87,20 @@
         input[type="submit"]:hover {
             background-color: rgba(255, 255, 255, 0.5);
         }
-        .usernameNpass1 .signup{
+
+        .usernameNpass1 .signup {
             text-align: center;
             margin: 20px;
             font-size: 17px;
         }
-        .usernameNpass1 .signup a{
+
+        .usernameNpass1 .signup a {
             text-decoration: none;
-            color:rgb(32, 107, 178);
+            color: rgb(32, 107, 178);
         }
-        .usernameNpass1 .signup a:active{
-            color:rgb(0, 24, 178);
+
+        .usernameNpass1 .signup a:active {
+            color: rgb(0, 24, 178);
         }
     </style>
 </head>
@@ -104,7 +111,7 @@
             <div class="usernameNpass2">
                 LOGIN
                 <div class="form">
-                    <form action="" method="post">
+                    <form action="" method="post" onsubmit="loginUser(event)">
                         <input type="text" placeholder="Username" name="Username" id="Username">
                         <input type="password" placeholder="Password" name="Password" id="Password">
                         <input type="submit" value="Login">
@@ -116,6 +123,32 @@
             </div>
         </div>
     </div>
+    <script>
+        async function loginUser(event) {
+            event.preventDefault();
+            const username = document.getElementById('Username').value;
+            const password = document.getElementById('Password').value;
+
+            try {
+                const response = await fetch('http://localhost/project/login.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `username=${username}&password=${password}`
+                });
+
+                const message = await response.text();  // Use .text() instead of .json()
+
+                if (message === 'Login successful') {
+                    alert(message);  // "Login successful"
+                    window.location.href = 'ide.html';  // Redirect to IDE page
+                } else {
+                    alert(message);  // "Incorrect username or password"
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+            }
+        }
+    </script>
 </body>
 
 </html>
